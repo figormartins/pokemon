@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PokeApi.Data;
 using PokeApi.Model;
 
@@ -11,17 +13,24 @@ namespace PokeApi.Repositories
     {
     }
 
-    public void AddPokemons(List<Pokemon> pokemons)
+    public async Task AddPokemons(List<Pokemon> pokemons)
     {
       foreach (var poke in pokemons)
       {
         if (!dbSet.Where(p => p.Number == poke.Number).Any())
         {
-            dbSet.Add(poke);
+          dbSet.Add(poke);
         }
       }
 
-      context.SaveChanges();
+      await context.SaveChangesAsync();
+    }
+
+    public async Task<List<Pokemon>> GetPokemons()
+    {
+      return await dbSet
+        .OrderBy(p => p.Number)
+        .ToListAsync();
     }
   }
 }

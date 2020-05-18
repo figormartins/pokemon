@@ -4,9 +4,8 @@ using PokeApi.Model;
 
 namespace PokeApi.Repositories
 {
-  public interface IPokemonRepository
+  public interface ITypeElementRepository
   {
-    Task AddPokemons(List<Pokemon> pokemons);
-    Task<List<Pokemon>> GetPokemons();
+      Task AddTypeElements(List<PokemonSerialize> pokemons);
   }
 }

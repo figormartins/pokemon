@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PokeApi.Model;
 using PokeApi.Repositories;
@@ -11,24 +12,26 @@ namespace PokeApi.Data
   {
     private readonly ApplicationContext context;
     private readonly IPokemonRepository pokemonRepository;
+    private readonly ITypeElementRepository typeElementRepository;
 
-    public DataService(ApplicationContext context, IPokemonRepository pokemonRepository)
+    public DataService(ApplicationContext context, IPokemonRepository pokemonRepository, ITypeElementRepository typeElementRepository)
     {
       this.context = context;
       this.pokemonRepository = pokemonRepository;
+      this.typeElementRepository = typeElementRepository;
     }
 
-    public void InitializeDB()
+    public async Task InitializeDB()
     {
       context.Database.EnsureCreated();
       List<Pokemon> pokemons = GetPokemons();
-      pokemonRepository.AddPokemons(pokemons);
+      await pokemonRepository.AddPokemons(pokemons);
+      await typeElementRepository.AddTypeElements(GetPokemonsSerialized());
     }
 
     private static List<Pokemon> GetPokemons()
     {
-      var json = File.ReadAllText("Pokemons.json");
-      var pokemons = JsonConvert.DeserializeObject<List<PokemonSerialize>>(json)
+      return GetPokemonsSerialized()
         .Select(p =>
           new Pokemon(
             p.Number,
@@ -45,6 +48,12 @@ namespace PokeApi.Data
           )
         )
         .ToList();
+    }
+
+    private static List<PokemonSerialize> GetPokemonsSerialized()
+    {
+      var json = File.ReadAllText("Pokemons.json");
+      var pokemons = JsonConvert.DeserializeObject<List<PokemonSerialize>>(json);
 
       return pokemons;
     }
