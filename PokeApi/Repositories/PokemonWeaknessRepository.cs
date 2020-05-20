@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -7,17 +6,18 @@ using PokeApi.Model;
 
 namespace PokeApi.Repositories
 {
-  public class PokemonTypeElementRepository : BaseRepository<PokemonTypeElement>, IPokemonTypeElementRepository
+  public class PokemonWeaknessRepository : BaseRepository<PokemonWeakness>, IPokemonWeaknessRepository
   {
     private readonly IPokemonRepository _pokemonRepository;
     private readonly ITypeElementRepository _typeElementRepository;
-    public PokemonTypeElementRepository(ApplicationContext context, IPokemonRepository pokemonRepository, ITypeElementRepository typeElementRepository) : base(context)
+
+    public PokemonWeaknessRepository(ApplicationContext context, IPokemonRepository pokemonRepository, ITypeElementRepository typeElementRepository) : base(context)
     {
       _pokemonRepository = pokemonRepository;
       _typeElementRepository = typeElementRepository;
     }
 
-    public async Task AddTypeElements()
+    public async Task AddWeakness()
     {
       var pokesSerialized = _pokemonRepository.GetPokemonsSerialized();
       var types = _typeElementRepository.GetTypes();
@@ -30,23 +30,23 @@ namespace PokeApi.Repositories
           .Where(p => p.Number == poke.Number)
           .SingleOrDefault();
         
-        if (pokeSerialized.Type != null && pokeSerialized.Type.Count > 0)
+        if (pokeSerialized.Weaknesses != null && pokeSerialized.Weaknesses.Count > 0)
         {
-          foreach (var type in pokeSerialized.Type)
+          foreach (var weakness in pokeSerialized.Weaknesses)
           {
-            var newType = types
-              .Where(t => t.Type == type)
+            var newWeakness = types
+              .Where(t => t.Type == weakness)
               .SingleOrDefault();
             
-            var pokeTypeElement = new PokemonTypeElement(poke.Id, newType.Id);
+            var pokeWeaknesses = new PokemonWeakness(poke.Id, newWeakness.Id);
             var newPokemon = context.Set<Pokemon>()
-              .Include(t => t.Type)
+              .Include(w => w.Weaknesses)
               .Where(p => p.Id == poke.Id)
               .SingleOrDefault();
             
-            if(!newPokemon.Type.Where(t => t.TypeElementId == pokeTypeElement.TypeElementId).Any())
+            if(!newPokemon.Weaknesses.Where(t => t.TypeElementId == pokeWeaknesses.TypeElementId).Any())
             {
-              newPokemon.Type.Add(pokeTypeElement);
+              newPokemon.Weaknesses.Add(pokeWeaknesses);
               context.SaveChanges();
             }
           }

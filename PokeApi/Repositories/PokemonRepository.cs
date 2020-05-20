@@ -41,6 +41,8 @@ namespace PokeApi.Repositories
         .OrderBy(p => p.Number)
         .Include(t => t.Type)
           .ThenInclude(t => t.TypeElement)
+        .Include(w => w.Weaknesses)
+          .ThenInclude(t => t.TypeElement)
         .ToListAsync();
     }
 
