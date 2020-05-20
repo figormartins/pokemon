@@ -20,7 +20,7 @@ namespace PokeApi.Controllers
     [HttpGet("")]
     public async Task<ActionResult<List<Pokemon>>> GetAll()
     {
-      var pokemons = await _pokemonRepository.GetPokemons();
+      var pokemons = await _pokemonRepository.GetPokemonsAsync();
 
       foreach (var poke in pokemons)
       {

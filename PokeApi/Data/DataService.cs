@@ -13,12 +13,14 @@ namespace PokeApi.Data
     private readonly ApplicationContext context;
     private readonly IPokemonRepository pokemonRepository;
     private readonly ITypeElementRepository typeElementRepository;
+    private readonly IPokemonTypeElementRepository pokemonTypeElementRepository;
 
-    public DataService(ApplicationContext context, IPokemonRepository pokemonRepository, ITypeElementRepository typeElementRepository)
+    public DataService(ApplicationContext context, IPokemonRepository pokemonRepository, ITypeElementRepository typeElementRepository, IPokemonTypeElementRepository pokemonTypeElementRepository)
     {
       this.context = context;
       this.pokemonRepository = pokemonRepository;
       this.typeElementRepository = typeElementRepository;
+      this.pokemonTypeElementRepository = pokemonTypeElementRepository;
     }
 
     public async Task InitializeDB()
@@ -26,13 +28,14 @@ namespace PokeApi.Data
       context.Database.EnsureCreated();
       List<Pokemon> pokemons = GetPokemons();
       await pokemonRepository.AddPokemons(pokemons);
-      await typeElementRepository.AddTypeElements(GetPokemonsSerialized());
+      await typeElementRepository.AddTypeElements(pokemonRepository.GetPokemonsSerialized());
+      await pokemonTypeElementRepository.AddTypeElements();
     }
 
-    private static List<Pokemon> GetPokemons()
+    private List<Pokemon> GetPokemons()
     {
-      return GetPokemonsSerialized()
-        .Select(p =>
+      var pokemons = pokemonRepository.GetPokemonsSerialized();
+        return pokemons.Select(p =>
           new Pokemon(
             p.Number,
             p.Name,
@@ -48,14 +51,6 @@ namespace PokeApi.Data
           )
         )
         .ToList();
-    }
-
-    private static List<PokemonSerialize> GetPokemonsSerialized()
-    {
-      var json = File.ReadAllText("Pokemons.json");
-      var pokemons = JsonConvert.DeserializeObject<List<PokemonSerialize>>(json);
-
-      return pokemons;
     }
   }
 }

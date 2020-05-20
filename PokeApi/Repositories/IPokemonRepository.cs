@@ -7,6 +7,8 @@ namespace PokeApi.Repositories
   public interface IPokemonRepository
   {
     Task AddPokemons(List<Pokemon> pokemons);
-    Task<List<Pokemon>> GetPokemons();
+    Task<List<Pokemon>> GetPokemonsAsync();
+    List<Pokemon> GetPokemons();
+    List<PokemonSerialize> GetPokemonsSerialized();
   }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PokeApi.Data;
 using PokeApi.Model;
 
@@ -49,6 +50,12 @@ namespace PokeApi.Repositories
       }
 
       await context.SaveChangesAsync();
+    }
+
+    public List<TypeElement> GetTypes()
+    {
+      return dbSet
+        .ToList();
     }
   }
 }
