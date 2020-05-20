@@ -15,18 +15,21 @@ namespace PokeApi.Data
     private readonly ITypeElementRepository typeElementRepository;
     private readonly IPokemonTypeElementRepository pokemonTypeElementRepository;
     private readonly IPokemonWeaknessRepository pokemonWeaknessRepository;
+    private readonly IPokemonNextEvolutionRepository pokemonNextEvolutionRepository;
 
     public DataService(ApplicationContext context,
       IPokemonRepository pokemonRepository,
       ITypeElementRepository typeElementRepository,
       IPokemonTypeElementRepository pokemonTypeElementRepository,
-      IPokemonWeaknessRepository pokemonWeaknessRepository)
+      IPokemonWeaknessRepository pokemonWeaknessRepository,
+      IPokemonNextEvolutionRepository pokemonNextEvolutionRepository)
     {
       this.context = context;
       this.pokemonRepository = pokemonRepository;
       this.typeElementRepository = typeElementRepository;
       this.pokemonTypeElementRepository = pokemonTypeElementRepository;
       this.pokemonWeaknessRepository = pokemonWeaknessRepository;
+      this.pokemonNextEvolutionRepository = pokemonNextEvolutionRepository;
     }
 
     public async Task InitializeDB()
@@ -37,6 +40,7 @@ namespace PokeApi.Data
       await typeElementRepository.AddTypeElements(pokemonRepository.GetPokemonsSerialized());
       await pokemonTypeElementRepository.AddTypeElements();
       await pokemonWeaknessRepository.AddWeakness();
+      await pokemonNextEvolutionRepository.AddNextEvolution();
     }
 
     private List<Pokemon> GetPokemons()

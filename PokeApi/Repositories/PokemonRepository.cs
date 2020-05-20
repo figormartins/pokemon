@@ -43,6 +43,12 @@ namespace PokeApi.Repositories
     {
       return dbSet
         .OrderBy(p => p.Number)
+        .Include(t => t.Type)
+          .ThenInclude(t => t.TypeElement)
+        .Include(w => w.Weaknesses)
+          .ThenInclude(t => t.TypeElement)
+        .Include(n => n.NextEvolution)
+        .Include(p => p.PrevEvolution)
         .ToList();
     }
 
@@ -54,6 +60,8 @@ namespace PokeApi.Repositories
           .ThenInclude(t => t.TypeElement)
         .Include(w => w.Weaknesses)
           .ThenInclude(t => t.TypeElement)
+        .Include(n => n.NextEvolution)
+        .Include(p => p.PrevEvolution)
         .ToListAsync();
     }
 
