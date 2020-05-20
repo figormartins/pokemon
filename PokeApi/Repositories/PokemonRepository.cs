@@ -32,6 +32,10 @@ namespace PokeApi.Repositories
     {
       return dbSet
         .Where(p => p.Number == number)
+        .Include(n => n.NextEvolution)
+        .Include(p => p.PrevEvolution)
+        .Include(w => w.Weaknesses)
+        .Include(t => t.Type)
         .SingleOrDefault();
     }
 
