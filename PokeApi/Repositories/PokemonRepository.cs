@@ -28,6 +28,13 @@ namespace PokeApi.Repositories
       await context.SaveChangesAsync();
     }
 
+    public Pokemon GetPokemonByNumber(int number)
+    {
+      return dbSet
+        .Where(p => p.Number == number)
+        .SingleOrDefault();
+    }
+
     public List<Pokemon> GetPokemons()
     {
       return dbSet

@@ -10,5 +10,6 @@ namespace PokeApi.Repositories
     Task<List<Pokemon>> GetPokemonsAsync();
     List<Pokemon> GetPokemons();
     List<PokemonSerialize> GetPokemonsSerialized();
+    Pokemon GetPokemonByNumber(int number);
   }
 }
