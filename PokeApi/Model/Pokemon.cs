@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace PokeApi.Model
 {
@@ -27,6 +29,7 @@ namespace PokeApi.Model
       SpawnTime = spawnTime;
     }
 
+    [JsonIgnore]
     public int Id { get; set; }
     public int Number { get; set; }
     public string Name { get; set; }
