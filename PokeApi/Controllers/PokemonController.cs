@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PokeApi.Model;
@@ -10,24 +11,45 @@ namespace PokeApi.Controllers
   [Route("pokemon")]
   public class PokemonController : ControllerBase
   {
-    public readonly IPokemonRepository _pokemonRepository;
+    private readonly IPokemonRepository _pokemonRepository;
 
     public PokemonController(IPokemonRepository pokemonRepository)
     {
       _pokemonRepository = pokemonRepository;
     }
 
-    [HttpGet("")]
-    public async Task<ActionResult<List<Pokemon>>> GetAll()
+    [HttpGet]
+    [Route("")]
+    public async Task<ActionResult<List<PokemonSerialize>>> GetAll()
     {
       var pokemons = await _pokemonRepository.GetPokemonsAsync();
 
       foreach (var poke in pokemons)
       {
-          poke.Image = $"{Request.Host.Value}/image/{poke.Number}";
+        poke.Image = RetrieveRawUrlImage(poke.Number);
       }
-      
-      return Ok(pokemons);
+
+      var pokes = pokemons
+        .Select(p => new PokemonSerialize(p));
+
+      return Ok(pokes);
+    }
+
+    [HttpGet]
+    [Route("{number:int}")]
+    public async Task<ActionResult<PokemonSerialize>> GetByNumber(int number)
+    {
+      var pokemon = await _pokemonRepository.GetPokemonByNumberAsync(number);
+      pokemon.Image = RetrieveRawUrlImage(pokemon.Number);
+
+      var poke = new PokemonSerialize(pokemon);
+
+      return Ok(poke);
+    }
+
+    private string RetrieveRawUrlImage(int number)
+    {
+      return $"{Request.Scheme}://{Request.Host.Value}/image/{number}";
     }
   }
 }

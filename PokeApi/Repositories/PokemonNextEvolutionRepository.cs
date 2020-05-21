@@ -15,7 +15,6 @@ namespace PokeApi.Repositories
 
     public async Task AddNextEvolution()
     {
-      var pokemons = _pokemonRepository.GetPokemons();
       var pokemonsSerialized = _pokemonRepository.GetPokemonsSerialized();
 
       foreach (var pokeSer in pokemonsSerialized)
@@ -26,7 +25,7 @@ namespace PokeApi.Repositories
 
           foreach (var evolution in pokeSer.NextEvolution)
           {
-            if (!poke.NextEvolution.Where(x => x.Pokemon.Number == evolution.Number).Any())
+            if (!poke.NextEvolution.Where(x => x.NextPokemon.Number == evolution.Number).Any())
             {
               var newPoke = _pokemonRepository.GetPokemonByNumber(evolution.Number);
               var newEvolution = new PokemonNextEvolution(poke.Id, newPoke.Id);

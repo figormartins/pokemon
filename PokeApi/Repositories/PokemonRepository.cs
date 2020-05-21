@@ -33,10 +33,29 @@ namespace PokeApi.Repositories
       return dbSet
         .Where(p => p.Number == number)
         .Include(n => n.NextEvolution)
+          .ThenInclude(n => n.NextPokemon)
         .Include(p => p.PrevEvolution)
+          .ThenInclude(n => n.PrevPokemon)
         .Include(w => w.Weaknesses)
+          .ThenInclude(t => t.TypeElement)
         .Include(t => t.Type)
+          .ThenInclude(t => t.TypeElement)
         .SingleOrDefault();
+    }
+
+    public async Task<Pokemon> GetPokemonByNumberAsync(int number)
+    {
+      return await dbSet
+        .Where(p => p.Number == number)
+        .Include(n => n.NextEvolution)
+          .ThenInclude(n => n.NextPokemon)
+        .Include(p => p.PrevEvolution)
+          .ThenInclude(n => n.PrevPokemon)
+        .Include(w => w.Weaknesses)
+          .ThenInclude(t => t.TypeElement)
+        .Include(t => t.Type)
+          .ThenInclude(t => t.TypeElement)
+        .SingleOrDefaultAsync();
     }
 
     public List<Pokemon> GetPokemons()

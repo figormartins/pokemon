@@ -25,7 +25,7 @@ namespace PokeApi.Repositories
 
           foreach (var evolution in pokeSer.PrevEvolution)
           {
-            if (!poke.PrevEvolution.Where(x => x.Pokemon.Number == evolution.Number).Any())
+            if (!poke.PrevEvolution.Where(x => x.PrevPokemon.Number == evolution.Number).Any())
             {
               var newPoke = _pokemonRepository.GetPokemonByNumber(evolution.Number);
               var prevEvolution = new PokemonPrevEvolution(poke.Id, newPoke.Id);

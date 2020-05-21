@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace PokeApi.Model
@@ -56,6 +57,39 @@ namespace PokeApi.Model
 
   public class PokemonSerialize
   {
+    public PokemonSerialize()
+    {
+    }
+
+    public PokemonSerialize(Pokemon pokemon)
+    {
+      Id = pokemon.Id;
+      Number = pokemon.Number;
+      Name = pokemon.Name;
+      Image = pokemon.Image;
+      Height = pokemon.Height;
+      Weight = pokemon.Height;
+      Candy = pokemon.Candy;
+      CandyCount = pokemon.CandyCount;
+      Egg = pokemon.Egg;
+      SpawnChance = pokemon.SpawnChance;
+      AvgSpawns = pokemon.AvgSpawns;
+      SpawnTime = pokemon.SpawnTime;
+      Type = pokemon.Type
+        .Select(k => k.TypeElement.Type)
+        .ToList();
+      Weaknesses = pokemon.Weaknesses
+        .Select(k => k.TypeElement.Type)
+        .ToList();
+      PrevEvolution = pokemon.PrevEvolution
+        .Select(k => new Evolution() { Name = k.PrevPokemon.Name, Number = k.PrevPokemon.Number })
+        .ToList();
+      NextEvolution = pokemon.NextEvolution
+        .Select(k => new Evolution() { Name = k.NextPokemon.Name, Number = k.NextPokemon.Number })
+        .ToList();
+    }
+
+    [JsonIgnore]
     public int Id { get; set; }
     public int Number { get; set; }
     public string Name { get; set; }

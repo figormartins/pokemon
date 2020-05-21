@@ -23,7 +23,8 @@ namespace PokeApi.Data
       ITypeElementRepository typeElementRepository,
       IPokemonTypeElementRepository pokemonTypeElementRepository,
       IPokemonWeaknessRepository pokemonWeaknessRepository,
-      IPokemonNextEvolutionRepository pokemonNextEvolutionRepository, IPokemonPrevEvolutionRepository pokemonPrevEvolutionRepository)
+      IPokemonNextEvolutionRepository pokemonNextEvolutionRepository,
+      IPokemonPrevEvolutionRepository pokemonPrevEvolutionRepository)
     {
       this.context = context;
       this.pokemonRepository = pokemonRepository;
