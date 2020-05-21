@@ -42,6 +42,7 @@ namespace PokeApi
             services.AddTransient<IPokemonTypeElementRepository, PokemonTypeElementRepository>();
             services.AddTransient<IPokemonWeaknessRepository, PokemonWeaknessRepository>();
             services.AddTransient<IPokemonNextEvolutionRepository, PokemonNextEvolutionRepository>();
+            services.AddTransient<IPokemonPrevEvolutionRepository, PokemonPrevEvolutionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
