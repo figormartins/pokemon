@@ -18,6 +18,7 @@ namespace PokeApi
 {
     public class Startup
     {
+        string SpecificOriginsPolicy = "_specificOriginsPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +32,15 @@ namespace PokeApi
             services.AddControllers();
             
             string connectionString = Configuration.GetConnectionString("Default");
+            string myAllowSpecificOrigins = Configuration.GetValue<string>("MyAllowSpecificOrigins");
+
+            services.AddCors(options => 
+                options.AddPolicy(name: SpecificOriginsPolicy,
+                    builder =>
+                    {
+                        builder.WithOrigins(myAllowSpecificOrigins);
+                    })
+            );
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseNpgsql(connectionString)
@@ -57,6 +67,8 @@ namespace PokeApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(SpecificOriginsPolicy);
 
             app.UseAuthorization();
 
