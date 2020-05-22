@@ -35,16 +35,16 @@ namespace PokeApi.Data
       this.pokemonPrevEvolutionRepository = pokemonPrevEvolutionRepository;
     }
 
-    public async Task InitializeDB()
+    public void InitializeDB()
     {
       context.Database.EnsureCreated();
       List<Pokemon> pokemons = GetPokemons();
-      await pokemonRepository.AddPokemons(pokemons);
-      await typeElementRepository.AddTypeElements(pokemonRepository.GetPokemonsSerialized());
-      await pokemonTypeElementRepository.AddTypeElements();
-      await pokemonWeaknessRepository.AddWeakness();
-      await pokemonNextEvolutionRepository.AddNextEvolution();
-      await pokemonPrevEvolutionRepository.AddPrevEvolution();
+      pokemonRepository.AddPokemons(pokemons);
+      typeElementRepository.AddTypeElements(pokemonRepository.GetPokemonsSerialized());
+      pokemonTypeElementRepository.AddTypeElements();
+      pokemonWeaknessRepository.AddWeakness();
+      pokemonNextEvolutionRepository.AddNextEvolution();
+      pokemonPrevEvolutionRepository.AddPrevEvolution();
     }
 
     private List<Pokemon> GetPokemons()

@@ -4,6 +4,6 @@ namespace PokeApi.Data
 {
   public interface IDataService
   {
-      Task InitializeDB();
+      void InitializeDB();
   }
 }

@@ -22,6 +22,12 @@ namespace PokeApi.Controllers
     public async Task<ActionResult<Pokemon>> GetById(int number)
     {
         var pokemon = await _pokemonRepository.GetPokemonByNumberAsync(number);
+
+        if (pokemon is null)
+        {
+          return BadRequest("Try a number between 1 and 151");
+        }
+
         var path = RawPath(pokemon.Name);
 
         return PhysicalFile(path, "image/jpeg");

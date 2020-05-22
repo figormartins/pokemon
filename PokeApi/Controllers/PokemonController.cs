@@ -40,6 +40,11 @@ namespace PokeApi.Controllers
     public async Task<ActionResult<PokemonSerialize>> GetByNumber(int number)
     {
       var pokemon = await _pokemonRepository.GetPokemonByNumberAsync(number);
+      if (pokemon is null)
+      {
+        return BadRequest("Try a number between 1 and 151");
+      }
+
       pokemon.Image = RetrieveRawUrlImage(pokemon.Number);
 
       var poke = new PokemonSerialize(pokemon);
