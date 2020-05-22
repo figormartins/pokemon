@@ -932,14 +932,14 @@
   {
     "Id": 29,
     "Number": 29,
-    "Name": "Nidoran ♀ (Female)",
+    "Name": "Nidoran Female",
     "Image": "http://www.serebii.net/pokemongo/pokemon/029.png",
     "Type": [
       "Poison"
     ],
     "Height": 0.41,
     "Weight": 7.0,
-    "Candy": "Nidoran ♀ (Female) Candy",
+    "Candy": "Nidoran Female Candy",
     "CandyCount": 25,
     "Egg": "5 km",
     "SpawnChance": 1.38,
@@ -974,7 +974,7 @@
     ],
     "Height": 0.79,
     "Weight": 20.0,
-    "Candy": "Nidoran ♀ (Female) Candy",
+    "Candy": "Nidoran Female Candy",
     "CandyCount": 100,
     "Egg": "Not in Eggs",
     "SpawnChance": 0.088,
@@ -991,7 +991,7 @@
     "PrevEvolution": [
       {
         "Number": 29,
-        "Name": "Nidoran(Female)"
+        "Name": "Nidoran Female"
       }
     ],
     "NextEvolution": [
@@ -1012,7 +1012,7 @@
     ],
     "Height": 1.30,
     "Weight": 60.0,
-    "Candy": "Nidoran ♀ (Female) Candy",
+    "Candy": "Nidoran Female Candy",
     "Egg": "Not in Eggs",
     "SpawnChance": 0.012,
     "AvgSpawns": 1.2,
@@ -1027,7 +1027,7 @@
     "PrevEvolution": [
       {
         "Number": 29,
-        "Name": "Nidoran(Female)"
+        "Name": "Nidoran Female"
       },
       {
         "Number": 30,
@@ -1038,14 +1038,14 @@
   {
     "Id": 32,
     "Number": 32,
-    "Name": "Nidoran ♂ (Male)",
+    "Name": "Nidoran Male",
     "Image": "http://www.serebii.net/pokemongo/pokemon/032.png",
     "Type": [
       "Poison"
     ],
     "Height": 0.51,
     "Weight": 9.0,
-    "Candy": "Nidoran ♂ (Male) Candy",
+    "Candy": "Nidoran Male Candy",
     "CandyCount": 25,
     "Egg": "5 km",
     "SpawnChance": 1.31,
@@ -1080,7 +1080,7 @@
     ],
     "Height": 0.89,
     "Weight": 19.5,
-    "Candy": "Nidoran ♂ (Male) Candy",
+    "Candy": "Nidoran Male Candy",
     "CandyCount": 100,
     "Egg": "Not in Eggs",
     "SpawnChance": 0.083,
@@ -1096,7 +1096,7 @@
     "PrevEvolution": [
       {
         "Number": 32,
-        "Name": "Nidoran(Male)"
+        "Name": "Nidoran Male"
       }
     ],
     "NextEvolution": [
@@ -1117,7 +1117,7 @@
     ],
     "Height": 1.40,
     "Weight": 62.0,
-    "Candy": "Nidoran ♂ (Male) Candy",
+    "Candy": "Nidoran Male Candy",
     "Egg": "Not in Eggs",
     "SpawnChance": 0.017,
     "AvgSpawns": 1.7,
@@ -1132,7 +1132,7 @@
     "PrevEvolution": [
       {
         "Number": 32,
-        "Name": "Nidoran(Male)"
+        "Name": "Nidoran Male"
       },
       {
         "Number": 33,
