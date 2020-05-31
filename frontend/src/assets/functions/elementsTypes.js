@@ -1,4 +1,4 @@
-const Types = {
+const ElementTypes = {
   "Grass" : "#78C850",
   "Poison" : "#A040A0",
   "Fire" : "#F08030",
@@ -19,4 +19,4 @@ const Types = {
   "Steel" : "#B8B8D0"
 }
 
-export { Types }
+export default ElementTypes

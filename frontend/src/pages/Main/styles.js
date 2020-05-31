@@ -23,16 +23,33 @@ const Presentation = styled.div`
   border-radius: 15px;
   position: relative;
 
-  img {
-    position: absolute;
-    width: 120px;
-    bottom: 0px;
-    filter: opacity(50%);
+  div {
+    padding: 20px 40px;
   }
 `
 
-const Header = styled.div`
+const ImageBack = styled.img.attrs((props) => ({
+  src: props.image
+}))`
+  position: absolute;
+  width: 120px;
+  bottom: 0px;
+  left: 0px;
+  filter: opacity(50%);
+`
 
+const Header = styled.div`
+  margin-top: 50px;
+
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    margin-top: 10px;
+    color: #565766;
+    font-size: 12px;
+  }
 `
 
 const Board = styled.div`
@@ -41,7 +58,4 @@ const Board = styled.div`
   border-radius: 15px;
 `
 
-
-
-
-export { Container, Dashboard, Presentation, Header, Board }
+export { Container, Dashboard, Presentation, Header, Board, ImageBack }
