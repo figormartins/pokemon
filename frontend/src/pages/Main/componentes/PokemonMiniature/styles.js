@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import ElementTypes from '../../../../assets/functions/elementsTypes'
+import styled from 'styled-components'
+import ElementTypes from '../../../../utils/functions/elementsTypes'
 
 const Card = styled.li`
   list-style: none;
@@ -12,6 +12,7 @@ const Card = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  transition: 150ms;
   box-shadow:
     0 1px 1px rgba(0,0,0,0.08),
     0 2px 2px rgba(0,0,0,0.12),
@@ -22,6 +23,24 @@ const Card = styled.li`
     inset 0 3px 4px  rgb(33, 55, 109, 0.11),
     inset 0 2px 8px  rgb(33, 55, 109, 0.11),
     inset 0 1px 16px rgb(33, 55, 109, 0.11);
+
+  &:hover {
+    cursor: pointer;
+    border: solid 3px #565790;
+    padding: 3px;
+  }
+
+  &:active {
+    background: #71717f00;
+    border-color: #565790aa;
+  }
+
+  div.infos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+  }
 
   div {
     margin: 0;
@@ -50,11 +69,13 @@ const Card = styled.li`
         font-weight: 700;
         color: #717173;
         display: block;
+
+        span {
+          font-size: 8px;
+        }
       }
     }
   }
-
-
 `
 
 const Types = styled.div.attrs((element) => ({

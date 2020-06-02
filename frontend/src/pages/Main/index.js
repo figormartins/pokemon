@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react'
 
-import { Container, Dashboard, ImageBack, Presentation, Header, Board } from './styles'
+import { Container, Dashboard, Presentation, Header, Board } from './styles'
 import Search from './componentes/Search'
+import Pokemon from './componentes/Pokemon'
 
-import api from '../../services/api'
-
-import img from '../../assets/dots.svg'
-
+import { api } from '../../services/api'
 
 const Main = () => {
   const [pokemons, setPokemons] = useState({})
+  const [pokemon, setPokemon] = useState({})
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const response = await api.get('pokemon')
 
       setPokemons(response.data)
+      setPokemon(response.data[5] || {})
     }
 
     fetchPokemons()
@@ -31,10 +31,10 @@ const Main = () => {
           </Header>
 
           <Search pokemons={pokemons} />
-          <ImageBack image={img}/>
         </Presentation>
 
         <Board>
+          <Pokemon pokemon={pokemon} />
         </Board>
       </Dashboard>
     </Container>

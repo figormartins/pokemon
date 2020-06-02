@@ -4,7 +4,8 @@ import { Card, Types, Dot } from './styles'
 const PokemonMiniature = ({ pokemon }) => {
   return (
     <Card>
-      <div>
+      <div className="infos">
+        <p>{pokemon?.name}</p>
         <Types>
           {pokemon?.type?.map(currType => (
             <Dot key={currType} element={currType}></Dot>
@@ -15,8 +16,8 @@ const PokemonMiniature = ({ pokemon }) => {
       <div>
         <img src={pokemon?.image} alt="" />
         <div>
-          <p>Altura: {pokemon?.height} m</p>
-          <p>Peso: {pokemon?.weight} kg</p>
+          <p>Altura: {pokemon?.height} <span>m</span></p>
+          <p>Peso: {pokemon?.weight} <span>kg</span></p>
         </div>
       </div>
     </Card>
