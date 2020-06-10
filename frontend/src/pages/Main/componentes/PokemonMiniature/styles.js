@@ -28,6 +28,7 @@ const Card = styled.li`
     cursor: pointer;
     border: solid 3px #565790;
     padding: 3px;
+    transform: translate(2px, -3px);
   }
 
   &:active {
@@ -65,7 +66,7 @@ const Card = styled.li`
       justify-content: stretch;
 
       p {
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 700;
         color: #717173;
         display: block;
