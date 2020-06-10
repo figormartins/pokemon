@@ -27,7 +27,7 @@ const Main = () => {
         <Presentation>
           <Header>
             <h1>Hi Igor,</h1>
-            <p>Let's search a amazing <span>Pokemon</span></p>
+            <p>Let's search an amazing <span>Pokemon</span></p>
           </Header>
 
           <Search pokemons={pokemons} />

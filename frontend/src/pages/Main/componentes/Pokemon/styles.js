@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Header = styled.div`
-  color: #565790;
+  color: #15172B;
   font-weight: 700;
   font-size: 36px;
   text-align: center;
@@ -17,7 +17,11 @@ const Container = styled.div`
 `
 
 const Information = styled.div`
-  color: #0B0A0Dee;
+  color: #151720;
+
+  h1 {
+    font-size: 18px;
+  }
 `
 
 const Image = styled.img.attrs(({ image }) => ({

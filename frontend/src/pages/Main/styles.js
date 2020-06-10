@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import valor from '../../assets/Intersect.svg'
 
 const Container = styled.div`
   background: #15172B;
@@ -60,7 +61,7 @@ const Header = styled.div`
 `
 
 const Board = styled.div`
-  background: #fff;
+  background: #F0F0FF url(${valor}) no-repeat 100% bottom;
   flex: 2;
   border-radius: 15px;
 `

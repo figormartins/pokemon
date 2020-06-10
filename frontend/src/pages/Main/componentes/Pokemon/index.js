@@ -4,6 +4,10 @@ import { Header, Container, Information, Image } from './styles'
 
 import { apiV2 } from '../../../../services/api'
 
+const formatDescription = (description) => {
+  return description.replace("", "").replace(".", ". ")
+}
+
 const Pokemon = (props) => {
   const [pokemon, setPokemon] = useState({})
   const [description, setDescription] = useState("")
@@ -32,10 +36,7 @@ const Pokemon = (props) => {
       <Header>{pokemon.name}</Header>
       <Container>
         <Information>
-          {(!pokemon.number) ?
-            <h1>An amazing Pokemon</h1> :
-            <h1>{description}</h1>
-          }
+          <h1>{formatDescription(description)}</h1>
         </Information>
         <Image image={pokemon.image} />
       </Container>
