@@ -46,6 +46,13 @@ const Image = styled.img.attrs(({ image }) => ({
   src: image
 }))`
   max-width: 500px;
+  justify-self: end;
+  align-self: end;
+  transition: 150ms;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `
 
 export { Header, Container, Information, Image }

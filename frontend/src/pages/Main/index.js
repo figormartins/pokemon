@@ -15,7 +15,7 @@ const Main = () => {
       const response = await api.get('pokemon')
 
       setPokemons(response.data)
-      setPokemon(response.data[5] || {})
+      setPokemon(response.data[Math.floor(Math.random() * 140)] || {})
     }
 
     fetchPokemons()

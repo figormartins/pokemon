@@ -29,6 +29,10 @@ const Card = styled.li`
     border: solid 3px #565790;
     padding: 3px;
     transform: translate(2px, -3px);
+
+    img {
+      transform: scale(1.5);
+    }
   }
 
   &:active {
@@ -58,6 +62,7 @@ const Card = styled.li`
       border: none;
       margin-bottom: 10px;
       position: relative;
+      transition: 150ms;
     }
 
     div {
