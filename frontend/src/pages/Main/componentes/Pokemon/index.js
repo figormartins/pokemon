@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Header, Container, Information, Image } from './styles'
+import Field from './components/Field'
 
 import { apiV2 } from '../../../../services/api'
 
@@ -33,10 +34,12 @@ const Pokemon = (props) => {
 
   return (
     <>
-      <Header>{pokemon.name}</Header>
+      <Header number={pokemon.number}>{pokemon.name}</Header>
       <Container>
         <Information>
           <h1>{formatDescription(description)}</h1>
+          <Field legend="Types" types={pokemon.type} />
+          <Field legend="Weaknesses" types={pokemon.weaknesses} />
         </Information>
         <Image image={pokemon.image} />
       </Container>

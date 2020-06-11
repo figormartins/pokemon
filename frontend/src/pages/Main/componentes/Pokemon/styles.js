@@ -1,11 +1,29 @@
 import styled from 'styled-components'
 
-const Header = styled.div`
+const Header = styled.div.attrs(({ number }) => ({
+  number
+}))`
   color: #15172B;
   font-weight: 700;
   font-size: 36px;
   text-align: center;
   margin-top: 15px;
+  position: relative;
+
+  &:after {
+    content: "${({ number }) => number}";
+
+    position: absolute;
+    font-size: 28px;
+    line-height: 60px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: #15172B;
+    color: #F0F0FF;
+    top: 0;
+    left: 15px;
+  }
 `
 
 const Container = styled.div`
