@@ -1,15 +1,27 @@
 import styled from 'styled-components'
 
-const Container = styled.div`
+const Title = styled.h1`
   margin-top: 50px;
+  margin-bottom: 10px;
+`
+
+const Container = styled.div`
   max-height: 250px;
   display: flex;
-  padding: auto;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
+`
 
-  h1 {
-    margin-bottom: 10px;
+const Evolution = styled.div`
+  display: flex;
+  align-items: flex-end;
+  max-width: 100px;
+  padding: 5px;
+
+
+  img {
+    height: 100px;
   }
 `
 
-export { Container }
+export { Title, Container, Evolution }
