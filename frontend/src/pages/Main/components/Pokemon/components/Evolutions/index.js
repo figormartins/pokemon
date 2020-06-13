@@ -14,18 +14,22 @@ const Evolutions = ({ prev, next }) => {
   }
 
   useEffect(() => {
-    if (prev) {
-      prev.forEach(async p => {
+    if (prev && next) {
+      const prevs = prev.map(async p => {
         const pokemon = await fetchPokemon(p.number)
-        setEvolutions(state => [...state, pokemon])
-      })
-    }
 
-    if (next) {
-      next.forEach(async n => {
-        const pokemon = await fetchPokemon(n.number)
-        setEvolutions(state => [...state, pokemon])
+        return pokemon
       })
+
+      const nexts = next.map(async n => {
+        const pokemon = await fetchPokemon(n.number)
+
+        return pokemon
+      })
+
+      const all = [...prevs, ...nexts]
+      Promise.all(all)
+        .then(values => setEvolutions(values))
     }
   }, [prev, next])
 
