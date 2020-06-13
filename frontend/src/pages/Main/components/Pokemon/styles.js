@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-const Header = styled.div.attrs(({ number }) => ({
-  number
-}))`
+const Header = styled.div`
   color: #15172B;
   font-weight: 700;
   font-size: 36px;
@@ -46,13 +44,19 @@ const Image = styled.img.attrs(({ image }) => ({
   src: image
 }))`
   max-width: 500px;
-  justify-self: end;
-  align-self: end;
+  max-height: 580px;
   transition: 150ms;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 `
 
-export { Header, Container, Information, Image }
+const Display = styled.div`
+  height: 500px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+`
+
+export { Header, Container, Information, Image, Display }

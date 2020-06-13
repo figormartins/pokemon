@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import { Container, Dashboard, Presentation, Header, Board } from './styles'
-import Search from './componentes/Search'
-import Pokemon from './componentes/Pokemon'
+import Search from './components/Search'
+import Pokemon from './components/Pokemon'
 
 import { api } from '../../services/api'
 
@@ -15,7 +15,7 @@ const Main = () => {
       const response = await api.get('pokemon')
 
       setPokemons(response.data)
-      setPokemon(response.data[Math.floor(Math.random() * 140)] || {})
+      setPokemon(response.data[7] || {})
     }
 
     fetchPokemons()
