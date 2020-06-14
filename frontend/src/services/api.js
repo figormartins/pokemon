@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 const apiV2 = axios.create({
-  baseURL: 'https://pokeapi.co/api/v2/pokemon-species/'
+  baseURL: 'https://pokeapi.co/api/v2/'
 })
 
 
