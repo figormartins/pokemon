@@ -20,13 +20,13 @@ const Dashboard = styled.div`
 `
 
 const Presentation = styled.div`
-  margin-right: 40px;
+  margin-right: 0px;
   flex: 1;
   border-radius: 15px;
   z-index: 1;
 
   div {
-    padding: 20px 40px;
+    padding: 20px 40px 20px 0;
   }
 `
 
