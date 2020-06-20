@@ -13,9 +13,10 @@ const Main = () => {
   useEffect(() => {
     const fetchPokemons = async () => {
       const response = await api.get('pokemon')
+      const filteredData = response.data.filter((p) => p.number <= 9)
 
-      setPokemons(response.data)
-      setPokemon(response.data[7] || {})
+      setPokemons(filteredData)
+      setPokemon(response.data[0] || {})
     }
 
     fetchPokemons()
@@ -30,7 +31,7 @@ const Main = () => {
             <p>Let's search an amazing <span>Pokemon</span></p>
           </Header>
 
-          <Search pokemons={pokemons} />
+          <Search pokemons={pokemons} pokemon={pokemon} setPokemon={setPokemon} />
         </Presentation>
 
         <Board>
