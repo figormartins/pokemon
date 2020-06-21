@@ -43,7 +43,7 @@ const Information = styled.div`
 const Image = styled.img.attrs(({ image }) => ({
   src: image
 }))`
-  max-width: 500px;
+  max-width: 95%;
   max-height: 580px;
   transition: 150ms;
 

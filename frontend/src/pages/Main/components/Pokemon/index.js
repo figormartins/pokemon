@@ -5,6 +5,8 @@ import Field from './components/Field'
 import Evolutions from './components/Evolutions'
 import Chart from './components/Chart'
 
+import elementsTypes from '../../../../utils/functions/elementsTypes'
+
 import { apiV2 } from '../../../../services/api'
 
 const formatDescription = (description) => {
@@ -36,19 +38,28 @@ const Pokemon = (props) => {
 
   return (
     <>
-      <Header number={pokemon.number}>{pokemon.name}</Header>
-      <Container>
-        <Information>
-          <h1>{formatDescription(description)}</h1>
-          <Field legend="Types" types={pokemon.type} />
-          <Field legend="Weaknesses" types={pokemon.weaknesses} />
-          <Chart number={pokemon.number} name={pokemon.name} />
-          <Evolutions next={pokemon.nextEvolution} prev={pokemon.prevEvolution} />
-        </Information>
-        <Display>
-          <Image image={pokemon.image} />
-        </Display>
-      </Container>
+      {
+        Object.keys(pokemon).length &&
+        <>
+          <Header number={pokemon.number}>{pokemon.name}</Header>
+          <Container>
+            <Information>
+              <h1>{formatDescription(description)}</h1>
+              <Field legend="Types" types={pokemon.type} />
+              <Field legend="Weaknesses" types={pokemon.weaknesses} />
+              <Chart
+                number={pokemon.number}
+                name={pokemon.name}
+                color={elementsTypes[pokemon.type[0]]}
+              />
+              <Evolutions next={pokemon.nextEvolution} prev={pokemon.prevEvolution} />
+            </Information>
+            <Display>
+              <Image image={pokemon.image} />
+            </Display>
+          </Container>
+        </>
+      }
     </>
   )
 }
