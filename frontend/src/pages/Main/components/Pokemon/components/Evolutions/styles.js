@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Title = styled.h1`
-  margin-top: 30px;
+  margin-top: 15px;
   margin-bottom: 10px;
 `
 
