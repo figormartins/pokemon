@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import ElementTypes from '../../../../utils/functions/elementsTypes'
 
-const Card = styled.li`
+const Card = styled.button`
   list-style: none;
   background: #26273a;
   width: 150px;
@@ -12,6 +12,7 @@ const Card = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  position: relative;
   transition: 150ms;
   box-shadow:
     0 1px 1px rgba(0,0,0,0.08),
@@ -26,7 +27,7 @@ const Card = styled.li`
 
   &:hover {
     cursor: pointer;
-    border: solid 3px #565790;
+    border: solid 3px ${props => props.color};
     padding: 3px;
     transform: translate(2px, -3px);
 
@@ -37,7 +38,11 @@ const Card = styled.li`
 
   &:active {
     background: #71717f00;
-    border-color: #565790aa;
+  }
+
+  &.selected {
+    border: solid 3px ${props => props.color};
+    padding: 3px;
   }
 
   div.infos {
@@ -45,6 +50,13 @@ const Card = styled.li`
     flex-direction: column;
     align-items: flex-start;
     padding: 5px;
+    position: absolute;
+    left: 5px;
+
+    p {
+      margin-bottom: 3px;
+      font-weight: 500;
+    }
   }
 
   div {
@@ -53,27 +65,28 @@ const Card = styled.li`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: initial;
+    justify-content: flex-end;
+    height: 110px;
     flex: 1;
 
     img {
-      width: 70px;
-      height: 70px;
+      width: 75px;
+      height: auto;
+      max-height: 110px;
       border: none;
-      margin-bottom: 10px;
-      position: relative;
+      margin-bottom: 5px;
       transition: 150ms;
     }
 
     div {
       display: flex;
       flex-direction: column;
-      justify-content: stretch;
+      align-items: flex-start;
 
       p {
         font-size: 9px;
         font-weight: 700;
-        color: #717173;
+        color: #DCDCDF;
         display: block;
 
         span {

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Card, Types, Dot } from './styles'
 
-const PokemonMiniature = ({ pokemon }) => {
+import elementsTypes from '../../../../utils/functions/elementsTypes'
+
+const PokemonMiniature = ({ pokemon, className, setPokemon }) => {
   const formatNumber = (number) => {
     const numList = String(number).split('.')
     let numFormated = numList[0]
@@ -13,8 +15,12 @@ const PokemonMiniature = ({ pokemon }) => {
     return numFormated
   }
 
+  const handleSelectPokemon = () => {
+    setPokemon(pokemon)
+  }
+
   return (
-    <Card>
+    <Card className={className} color={elementsTypes[pokemon.type[0]]}onClick={handleSelectPokemon}>
       <div className="infos">
         <p>{pokemon?.name}</p>
         <Types>
@@ -22,14 +28,14 @@ const PokemonMiniature = ({ pokemon }) => {
             <Dot key={currType} element={currType}></Dot>
           ))}
         </Types>
-      </div>
-
-      <div>
-        <img src={pokemon?.image} alt="" />
         <div>
           <p>Height: {formatNumber(pokemon?.height)} <span>m</span></p>
           <p>Weight: {formatNumber(pokemon?.weight)} <span>kg</span></p>
         </div>
+      </div>
+
+      <div>
+        <img src={pokemon?.image} alt="" />
       </div>
     </Card>
   )
