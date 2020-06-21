@@ -4,7 +4,7 @@ import { Container } from './styles'
 
 import { apiV2 } from "../../../../../../services/api"
 
-const Chart = ({ number, name }) => {
+const Chart = ({ number, name, color }) => {
   const [stats, setStats] = useState([])
   const statsCallback = useCallback(async (number) => {
     const pokemon = await apiV2.get(`pokemon/${number}`)
@@ -76,12 +76,12 @@ const Chart = ({ number, name }) => {
     datasets: [
       {
         data: stats.map(st => st.base_stat),
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: `${color}55`,
+        borderColor: color,
         pointBorderColor: "#fff",
-        pointBackgroundColor: "#173f5f",
-        pointHoverBackgroundColor: "#173f5f",
-        pointHoverBorderColor: "rrgba(75,192,192,0.2)",
+        pointBackgroundColor: color,
+        pointHoverBackgroundColor: color,
+        pointHoverBorderColor: `${color}44`,
         fill: true
       }
     ]
