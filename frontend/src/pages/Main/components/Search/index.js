@@ -2,20 +2,21 @@ import React from 'react'
 import { Container, Input, PokemonList } from './styles'
 import PokemonMiniature from '../PokemonMiniature'
 
-const Search = ({ pokemons }) => {
+const Search = ({ pokemons, pokemon, setPokemon }) => {
   return (
     <Container>
       <Input />
       <PokemonList>
-        <PokemonMiniature pokemon={pokemons[2]} />
-        <PokemonMiniature pokemon={pokemons[123]} />
-        <PokemonMiniature pokemon={pokemons[41]} />
-        <PokemonMiniature pokemon={pokemons[5]} />
-        <PokemonMiniature pokemon={pokemons[149]} />
-        <PokemonMiniature pokemon={pokemons[91]} />
-        <PokemonMiniature pokemon={pokemons[127]} />
-        <PokemonMiniature pokemon={pokemons[11]} />
-        <PokemonMiniature pokemon={pokemons[64]} />
+        {pokemons.length &&
+          pokemons.map(poke =>
+            <PokemonMiniature
+              key={poke.number}
+              pokemon={poke}
+              className={poke.number === pokemon.number ? "selected" : ""}
+              setPokemon={setPokemon}
+            />
+          )
+        }
       </PokemonList>
     </Container>
   )
