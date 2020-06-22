@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GAYjNMXMfXZHbneZkUb6yJR/L/qoM0g8PJUUWgL24lFQ5n6ND3WBNQZaB14l6Msu4culKe54qaoEkykZwnShoQ==",
+  "dgSpecHash": "JXy52IS2t8pM0SXq02VakS6l/LhJ6ZH9HrPYTbJ23oyFlpQ3zAjN+quqg6KVp89xheW/Sp7aEItM41Tm7bUC5w==",
   "success": true,
   "projectFilePath": "D:\\Projetos\\Poke\\PokeApi\\PokeApi.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,8 @@
     "C:\\Users\\igorb\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512",
     "C:\\Users\\igorb\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\igorb\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
-    "C:\\Users\\igorb\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\igorb\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "C:\\Users\\igorb\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []
 }
