@@ -84,6 +84,23 @@ namespace PokeApi.Repositories
         .ToListAsync();
     }
 
+    public async Task<IEnumerable<Pokemon>> GetPokemonsByNameAsync(string name = "")
+    {
+      await Task.Yield();
+
+      var data = dbSet
+        .Include(t => t.Type)
+          .ThenInclude(t => t.TypeElement)
+        .Include(w => w.Weaknesses)
+          .ThenInclude(t => t.TypeElement)
+        .Include(n => n.NextEvolution)
+        .Include(p => p.PrevEvolution)
+        .Where(p => string.IsNullOrEmpty(name) || p.Name.Contains(name))
+        .AsEnumerable();
+
+      return data;
+    }
+
     public List<PokemonSerialize> GetPokemonsSerialized()
     {
       var json = File.ReadAllText("Pokemons.json");
