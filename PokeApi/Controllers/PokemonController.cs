@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PokeApi.Model;
 using PokeApi.Repositories;
+using PokeApi.Services;
 
 namespace PokeApi.Controllers
 {
@@ -20,9 +21,13 @@ namespace PokeApi.Controllers
 
     [HttpGet]
     [Route("")]
-    public async Task<ActionResult<List<PokemonSerialize>>> GetAll()
+    public async Task<ActionResult<PagedService<PokemonSerialize>>> GetAll(
+      string name = "",
+      int page = 1,
+      int quantity = 9
+    )
     {
-      var pokemons = await _pokemonRepository.GetPokemonsAsync();
+      var pokemons = await _pokemonRepository.GetPokemonsByNameAsync(name);
 
       foreach (var poke in pokemons)
       {
@@ -30,9 +35,11 @@ namespace PokeApi.Controllers
       }
 
       var pokes = pokemons
-        .Select(p => new PokemonSerialize(p));
+        .Select(poke => new PokemonSerialize(poke));
 
-      return Ok(pokes);
+      var pagedPokemons = new PagedService<PokemonSerialize>(pokes, page, quantity);
+
+      return Ok(pagedPokemons);
     }
 
     [HttpGet]
