@@ -96,6 +96,7 @@ namespace PokeApi.Repositories
         .Include(n => n.NextEvolution)
         .Include(p => p.PrevEvolution)
         .Where(p => string.IsNullOrEmpty(name) || p.Name.Contains(name))
+        .OrderBy(p => p.Number)
         .AsEnumerable();
 
       return data;
