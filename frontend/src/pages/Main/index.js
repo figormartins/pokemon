@@ -9,14 +9,24 @@ import { api } from '../../services/api'
 const Main = () => {
   const [pokemons, setPokemons] = useState({})
   const [pokemon, setPokemon] = useState({})
+  const [pokemonSearch, setPokemonSearch] = useState("")
+  const [page, setPage] = useState(1)
+  const [quantity, setQuantity] = useState(9)
 
   useEffect(() => {
     const fetchPokemons = async () => {
-      const response = await api.get('pokemon')
-      const filteredData = response.data.filter((p) => p.number <= 9)
+      const response = await api.get('pokemon', {
+        params: {
+          name: pokemonSearch,
+          page,
+          quantity
+        }
+      })
 
-      setPokemons(filteredData)
-      setPokemon(response.data[0] || {})
+      const { data } = response.data
+      console.log(response.data)
+      setPokemons(data)
+      setPokemon(data[0] || {})
     }
 
     fetchPokemons()
