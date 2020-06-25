@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react'
 import { Container, Dashboard, Presentation, Header, Board } from './styles'
 import Search from './components/Search'
 import Pokemon from './components/Pokemon'
+import Pagination from './components/Pagination'
 
 import { api } from '../../services/api'
 
 const Main = () => {
   const [pokemons, setPokemons] = useState({})
   const [pokemon, setPokemon] = useState({})
-  const [pokemonSearch, setPokemonSearch] = useState("")
+  const [pokemonSearch,] = useState("")
   const [page, setPage] = useState(1)
-  const [quantity, setQuantity] = useState(9)
+  const [quantity,] = useState(9)
+  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -24,13 +26,13 @@ const Main = () => {
       })
 
       const { data } = response.data
-      console.log(response.data)
+      setTotalPages(response.data.totalPages)
       setPokemons(data)
       setPokemon(data[0] || {})
     }
 
     fetchPokemons()
-  }, [])
+  }, [page, pokemonSearch, quantity])
 
   return (
     <Container>
@@ -41,7 +43,16 @@ const Main = () => {
             <p>Let's search an amazing <span>Pokemon</span></p>
           </Header>
 
-          <Search pokemons={pokemons} pokemon={pokemon} setPokemon={setPokemon} />
+          <Search
+            pokemons={pokemons}
+            pokemon={pokemon}
+            setPokemon={setPokemon}
+          />
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+          />
         </Presentation>
 
         <Board>
