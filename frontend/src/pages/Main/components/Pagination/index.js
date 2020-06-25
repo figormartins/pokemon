@@ -12,9 +12,7 @@ const Pagination = (props) => {
     let pageBefore = 0
 
     for (let currPage = 1; currPage <= totalPages; currPage++) {
-      const firstOrLastPage =
-        currPage === 1 || currPage === totalPages ||
-        currPage === 2 || currPage === totalPages - 1
+      const firstOrLastPage = currPage === 1 || currPage === totalPages
       const pageAfterSelectedPage = selectedPage + 2 >= currPage
       const pageBeforeSelectedPage = selectedPage - 2 <= currPage
 
@@ -48,6 +46,7 @@ const Pagination = (props) => {
               <Item
                 key={index}
                 onClick={() => !isNaN(page) && changePage(page)}
+                className={selectedPage === page ? "selected" : ""}
               >
                 {page}
               </Item>

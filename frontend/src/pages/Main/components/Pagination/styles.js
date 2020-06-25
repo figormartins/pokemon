@@ -16,6 +16,7 @@ const List = styled.ul`
 `
 
 const Item = styled.li`
+border-color: #6890F0;
   background: #26273a;
   min-height: 30px;
   min-width: 30px;
@@ -24,6 +25,7 @@ const Item = styled.li`
   justify-content: center;
   text-align: center;
   border-radius: 3px;
+  transition: 150ms;
   box-shadow:
     0 1px 1px rgba(0,0,0,0.08),
     0 2px 2px rgba(0,0,0,0.12),
@@ -36,6 +38,11 @@ const Item = styled.li`
 
   &:hover {
     cursor: ${({ children }) => isNaN(children) ? "default": "pointer"};
+    border: ${({ children }) => isNaN(children) ? "" : "solid 2px #6890F0"};
+  }
+
+  &.selected {
+    border: solid 2px #F85888;
   }
 `
 
