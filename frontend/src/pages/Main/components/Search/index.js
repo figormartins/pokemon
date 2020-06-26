@@ -19,7 +19,7 @@ const Search = (
     <Container>
       <Input value={pokemonSearch} onChange={handleOnChange} />
       <PokemonList>
-        {pokemons.length &&
+        {pokemons.length > 0 &&
           pokemons.map(poke =>
             <PokemonMiniature
               key={poke.number}

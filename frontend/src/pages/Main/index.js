@@ -29,10 +29,13 @@ const Main = () => {
       setTotalPages(response.data.totalPages)
       setPokemons(data)
       setPokemon(data[0] || {})
+
+      if (page > totalPages)
+        setPage(1)
     }
 
     fetchPokemons()
-  }, [page, pokemonSearch, quantity])
+  }, [page, pokemonSearch, quantity, totalPages])
 
   return (
     <Container>
