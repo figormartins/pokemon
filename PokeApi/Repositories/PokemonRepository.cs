@@ -94,8 +94,10 @@ namespace PokeApi.Repositories
         .Include(w => w.Weaknesses)
           .ThenInclude(t => t.TypeElement)
         .Include(n => n.NextEvolution)
+          .ThenInclude(n => n.NextPokemon)
         .Include(p => p.PrevEvolution)
-        .Where(p => string.IsNullOrEmpty(name) || p.Name.Contains(name))
+          .ThenInclude(n => n.PrevPokemon)
+        .Where(p => string.IsNullOrEmpty(name) || p.Name.ToUpper().Contains(name.ToUpper()))
         .OrderBy(p => p.Number)
         .AsEnumerable();
 
