@@ -2,10 +2,22 @@ import React from 'react'
 import { Container, Input, PokemonList } from './styles'
 import PokemonMiniature from '../PokemonMiniature'
 
-const Search = ({ pokemons, pokemon, setPokemon }) => {
+const Search = (
+  {
+    pokemons,
+    pokemon,
+    setPokemon,
+    pokemonSearch,
+    setPokemonSearch
+  }
+) => {
+  const handleOnChange = (event) => {
+    setPokemonSearch(event.target.value)
+  }
+
   return (
     <Container>
-      <Input />
+      <Input value={pokemonSearch} onChange={handleOnChange} />
       <PokemonList>
         {pokemons.length &&
           pokemons.map(poke =>

@@ -10,7 +10,7 @@ import { api } from '../../services/api'
 const Main = () => {
   const [pokemons, setPokemons] = useState({})
   const [pokemon, setPokemon] = useState({})
-  const [pokemonSearch,] = useState("")
+  const [pokemonSearch, setPokemonSearch] = useState("")
   const [page, setPage] = useState(1)
   const [quantity,] = useState(9)
   const [totalPages, setTotalPages] = useState(0)
@@ -47,6 +47,8 @@ const Main = () => {
             pokemons={pokemons}
             pokemon={pokemon}
             setPokemon={setPokemon}
+            pokemonSearch={pokemonSearch}
+            setPokemonSearch={setPokemonSearch}
           />
           <Pagination
             page={page}

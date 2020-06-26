@@ -8,7 +8,7 @@ const Container = styled.div`
 const Input = styled.input.attrs(() => ({
   placeholder: "Search your pokemon.."
 }))`
-  color: #717173;
+  color: #f1f1f5;
   border: none;
   padding: 15px 15px;
   border-radius: 10px;
