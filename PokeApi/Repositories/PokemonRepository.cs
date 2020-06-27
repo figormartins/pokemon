@@ -86,22 +86,26 @@ namespace PokeApi.Repositories
 
     public async Task<IEnumerable<Pokemon>> GetPokemonsByNameAsync(string name = "")
     {
-      await Task.Yield();
+      var data = Task.Run(() => 
+        dbSet
+          .Include(t => t.Type)
+            .ThenInclude(t => t.TypeElement)
+          .Include(w => w.Weaknesses)
+            .ThenInclude(t => t.TypeElement)
+          .Include(n => n.NextEvolution)
+            .ThenInclude(n => n.NextPokemon)
+          .Include(p => p.PrevEvolution)
+            .ThenInclude(n => n.PrevPokemon)
+          .Where(p =>
+            string.IsNullOrEmpty(name) ||
+            p.Name.ToUpper().Contains(name.ToUpper()) ||
+            p.Number.ToString().Contains(name)
+          )
+          .OrderBy(p => p.Number)
+          .AsEnumerable()
+      );
 
-      var data = dbSet
-        .Include(t => t.Type)
-          .ThenInclude(t => t.TypeElement)
-        .Include(w => w.Weaknesses)
-          .ThenInclude(t => t.TypeElement)
-        .Include(n => n.NextEvolution)
-          .ThenInclude(n => n.NextPokemon)
-        .Include(p => p.PrevEvolution)
-          .ThenInclude(n => n.PrevPokemon)
-        .Where(p => string.IsNullOrEmpty(name) || p.Name.ToUpper().Contains(name.ToUpper()))
-        .OrderBy(p => p.Number)
-        .AsEnumerable();
-
-      return data;
+      return await data;
     }
 
     public List<PokemonSerialize> GetPokemonsSerialized()
