@@ -84,7 +84,7 @@ namespace PokeApi.Repositories
         .ToListAsync();
     }
 
-    public async Task<IEnumerable<Pokemon>> GetPokemonsByNameAsync(string name = "")
+    public async Task<IQueryable<Pokemon>> GetPokemonsByNameAsync(string name = "")
     {
       var data = Task.Run(() => 
         dbSet
@@ -102,7 +102,7 @@ namespace PokeApi.Repositories
             p.Number.ToString().Contains(name)
           )
           .OrderBy(p => p.Number)
-          .AsEnumerable()
+          .AsQueryable()
       );
 
       return await data;

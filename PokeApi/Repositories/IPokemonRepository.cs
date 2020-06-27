@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PokeApi.Model;
 
@@ -12,6 +13,6 @@ namespace PokeApi.Repositories
     List<PokemonSerialize> GetPokemonsSerialized();
     Pokemon GetPokemonByNumber(int number);
     Task<Pokemon> GetPokemonByNumberAsync(int number);
-    Task<IEnumerable<Pokemon>> GetPokemonsByNameAsync(string name);
+    Task<IQueryable<Pokemon>> GetPokemonsByNameAsync(string name);
   }
 }
