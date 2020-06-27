@@ -6,7 +6,7 @@ namespace PokeApi.Services
 {
   public class PagedService<T> where T : class
   {
-    public PagedService(IEnumerable<T> data, int page, int quantity)
+    public PagedService(IQueryable<T> data, int page, int quantity)
     {
       PageSize = quantity;
       PageNumber = page;
@@ -16,7 +16,7 @@ namespace PokeApi.Services
       TotalItems = data.Count();
     }
 
-    public IEnumerable<T> Data { get; }
+    public IQueryable<T> Data { get; }
 
     public int PageNumber { get; }
 
