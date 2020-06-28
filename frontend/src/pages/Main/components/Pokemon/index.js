@@ -45,15 +45,23 @@ const Pokemon = (props) => {
           <Header number={pokemon.number}>{pokemon.name}</Header>
           <Container>
             <Information>
-              <h1>{formatDescription(description)}</h1>
-              <Field legend="Types" types={pokemon.type} />
-              <Field legend="Weaknesses" types={pokemon.weaknesses} />
-              <Chart
-                number={pokemon.number}
-                name={pokemon.name}
-                color={elementsTypes[pokemon.type[0]]}
-              />
-              <Evolutions next={pokemon.nextEvolution} prev={pokemon.prevEvolution} />
+              <section>
+                <h1>{formatDescription(description)}</h1>
+                <Field legend="Types" types={pokemon.type} />
+                <Field legend="Weaknesses" types={pokemon.weaknesses} />
+              </section>
+
+              <section>
+                <Chart
+                  number={pokemon.number}
+                  name={pokemon.name}
+                  color={elementsTypes[pokemon.type[0]]}
+                />
+              </section>
+
+              <section>
+                <Evolutions next={pokemon.nextEvolution} prev={pokemon.prevEvolution} />
+              </section>
             </Information>
             <Display>
               <Image image={pokemon.image} />

@@ -29,11 +29,14 @@ const Container = styled.div`
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 10px;
 `
 
 const Information = styled.div`
   color: #151720;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   h1 {
     font-size: 18px;
@@ -43,7 +46,7 @@ const Information = styled.div`
 const Image = styled.img.attrs(({ image }) => ({
   src: image
 }))`
-  max-width: 95%;
+  max-width: 100%;
   max-height: 580px;
   transition: 150ms;
 
@@ -53,7 +56,7 @@ const Image = styled.img.attrs(({ image }) => ({
 `
 
 const Display = styled.div`
-  height: 500px;
+  height: 600px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
