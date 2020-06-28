@@ -15,9 +15,12 @@ const Main = () => {
   const [quantity,] = useState(9)
   const [totalPages, setTotalPages] = useState(0)
   const [isFound, setIsFound] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchPokemons = async () => {
+      setLoading(true)
+
       const response = await api.get('pokemon', {
         params: {
           name: pokemonSearch,
@@ -36,6 +39,8 @@ const Main = () => {
 
       if (page > totalPages)
         setPage(1)
+
+      setLoading(false)
     }
 
     fetchPokemons()
@@ -65,7 +70,11 @@ const Main = () => {
         </Presentation>
 
         <Board>
-          <Pokemon pokemon={pokemon} isFound={isFound} />
+          <Pokemon
+            pokemon={pokemon}
+            isFound={isFound}
+            loading={loading}
+          />
         </Board>
       </Dashboard>
     </Container>
