@@ -32,7 +32,7 @@ const Card = styled.button`
     transform: translate(2px, -3px);
 
     img {
-      transform: scale(1.5);
+      transform: scale(1.3) translate(5px, -3px);
     }
   }
 
