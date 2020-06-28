@@ -35,32 +35,34 @@ const Pokemon = (props) => {
     }
 
     getDescription(props.pokemon.number)
-  }, [props.pokemon, pokemon])
+  }, [props.pokemon, pokemon, props.isFound])
 
   return (
     <>
       {
-        Object.keys(pokemon).length > 0 ?
-          <>
-            <Header number={pokemon.number}>{pokemon.name}</Header>
-            <Container>
-              <Information>
-                <h1>{formatDescription(description)}</h1>
-                <Field legend="Types" types={pokemon.type} />
-                <Field legend="Weaknesses" types={pokemon.weaknesses} />
-                <Chart
-                  number={pokemon.number}
-                  name={pokemon.name}
-                  color={elementsTypes[pokemon.type[0]]}
-                />
-                <Evolutions next={pokemon.nextEvolution} prev={pokemon.prevEvolution} />
-              </Information>
-              <Display>
-                <Image image={pokemon.image} />
-              </Display>
-            </Container>
-          </> :
-          <NotFound />
+        Object.keys(pokemon).length > 0 &&
+        <>
+          <Header number={pokemon.number}>{pokemon.name}</Header>
+          <Container>
+            <Information>
+              <h1>{formatDescription(description)}</h1>
+              <Field legend="Types" types={pokemon.type} />
+              <Field legend="Weaknesses" types={pokemon.weaknesses} />
+              <Chart
+                number={pokemon.number}
+                name={pokemon.name}
+                color={elementsTypes[pokemon.type[0]]}
+              />
+              <Evolutions next={pokemon.nextEvolution} prev={pokemon.prevEvolution} />
+            </Information>
+            <Display>
+              <Image image={pokemon.image} />
+            </Display>
+          </Container>
+        </>
+      }
+      {
+        !props.isFound && <NotFound />
       }
     </>
   )

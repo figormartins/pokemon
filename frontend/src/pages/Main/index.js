@@ -14,6 +14,7 @@ const Main = () => {
   const [page, setPage] = useState(1)
   const [quantity,] = useState(9)
   const [totalPages, setTotalPages] = useState(0)
+  const [isFound, setIsFound] = useState(true)
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -29,6 +30,9 @@ const Main = () => {
       setTotalPages(response.data.totalPages)
       setPokemons(data)
       setPokemon(data[0] || {})
+
+      const found = response.data.data.length > 0
+      setIsFound(found)
 
       if (page > totalPages)
         setPage(1)
@@ -61,7 +65,7 @@ const Main = () => {
         </Presentation>
 
         <Board>
-          <Pokemon pokemon={pokemon} />
+          <Pokemon pokemon={pokemon} isFound={isFound} />
         </Board>
       </Dashboard>
     </Container>
