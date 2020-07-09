@@ -67,4 +67,13 @@ const Board = styled.div`
   border-radius: 15px;
 `
 
-export { Container, Dashboard, Presentation, Header, Board, ImageBack }
+const Error = styled.div`
+  max-width: 70%;
+  margin: 50px auto;
+
+  img {
+    width: 100%;
+  }
+`
+
+export { Container, Dashboard, Presentation, Header, Board, ImageBack, Error }

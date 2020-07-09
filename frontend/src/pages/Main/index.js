@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-import { Container, Dashboard, Presentation, Header, Board } from './styles'
+import { Container, Dashboard, Presentation, Header, Board, Error } from './styles'
 import Search from './components/Search'
 import Pokemon from './components/Pokemon'
 import Pagination from './components/Pagination'
+
+import Image from '../../assets/connection-error.png'
 
 import { api } from '../../services/api'
 
@@ -16,6 +18,7 @@ const Main = () => {
   const [totalPages, setTotalPages] = useState(0)
   const [isFound, setIsFound] = useState(true)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -28,6 +31,15 @@ const Main = () => {
           quantity
         }
       })
+        .catch(err => {
+          setError(true)
+          console.log('Unable to connect to server', err)
+        })
+
+      if (!response)
+        return
+
+      setError(false)
 
       const { data } = response.data
       setTotalPages(response.data.totalPages)
@@ -70,12 +82,21 @@ const Main = () => {
         </Presentation>
 
         <Board>
-          <Pokemon
-            pokemon={pokemon}
-            isFound={isFound}
-            loading={loading}
-          />
+          <>
+            {
+              error ?
+                <Error>
+                  <img src={Image} alt="" />
+                </Error> :
+                <Pokemon
+                  pokemon={pokemon}
+                  isFound={isFound}
+                  loading={loading}
+                />
+            }
+          </>
         </Board>
+
       </Dashboard>
     </Container>
   )
