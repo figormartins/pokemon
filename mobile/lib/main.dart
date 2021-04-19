@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/utils/app_routes.dart';
-import 'package:mobile/views/pokemons_overview_screen.dart';
+import 'package:mobile/utils/constants.dart';
+import 'package:mobile/views/home_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,12 +9,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pokemon App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: kBackgroundColor,
+        primaryColor: kPrimaryColor,
+        textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PokemonsOverviewScreen(),
+      home: HomeScreen(),
     );
   }
 }
