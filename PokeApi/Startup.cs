@@ -33,18 +33,14 @@ namespace PokeApi
             
             string connectionString = Configuration.GetConnectionString("Default");
             string myAllowSpecificOrigins = Configuration.GetValue<string>("MyAllowSpecificOrigins");
+            services.AddDbContext<ApplicationContext>(opt => opt.UseInMemoryDatabase(databaseName: "Poke"), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 
-            services.AddCors(options => 
-                options.AddPolicy(name: SpecificOriginsPolicy,
-                    builder =>
-                    {
-                        builder.WithOrigins(myAllowSpecificOrigins);
-                    })
-            );
 
-            services.AddDbContext<ApplicationContext>(options =>
-                options.UseNpgsql(connectionString)
-            );
+            services.AddCors();
+            services.AddSwaggerGen();
+            // services.AddDbContext<ApplicationContext>(options =>
+            //     options.UseNpgsql(connectionString)
+            // );
 
             services.AddTransient<IDataService, DataService>();
             services.AddTransient<IPokemonRepository, PokemonRepository>();
@@ -63,6 +59,20 @@ namespace PokeApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseCors(options =>
+                options.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

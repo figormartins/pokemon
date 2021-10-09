@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/views/widgets/carousel.dart';
 import 'package:mobile/views/widgets/header_search_box.dart';
 
 class Body extends StatelessWidget {
@@ -10,7 +11,8 @@ class Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HeaderSearcheBox(size: size)
+          HeaderSearcheBox(size: size),
+          Carousel(),
         ],
       ),
     );

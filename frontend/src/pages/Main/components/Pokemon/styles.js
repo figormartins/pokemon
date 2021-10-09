@@ -44,7 +44,8 @@ const Information = styled.div`
 `
 
 const Image = styled.img.attrs(({ image }) => ({
-  src: image
+  src: image,
+  loading: "lazy"
 }))`
   max-width: 100%;
   max-height: 580px;
